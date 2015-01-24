@@ -27,7 +27,6 @@
 			<?php }elseif(!is_numeric($number)){ ?>
 				<div class="alert alert-danger" role="alert">数値ではありません！<a href="index.php">もどる</a></div>
 			<?php }else{ ?>
-			<dl class="dl-horizontal">
 			<?php
 			$number1 = $number-1;
 			$number2 = $number+1;
@@ -67,7 +66,7 @@
 			
 
 				$number6 = $number*$number*3.14;
-
+				echo '<dl class="dl-horizontal">';
 				echo "<dt>入力した数値</dt><dd>".$number."</dd>";
 				echo "<dt>前の数</dt><dd>".$number1."</dd>";
 				echo "<dt>次の数</dt><dd>".$number2."</dd>";
