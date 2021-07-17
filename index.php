@@ -1,3 +1,4 @@
+<?php $number = (!empty($_GET['number'])) ? $_GET['number'] : '数'; ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -6,7 +7,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<?php $number = (!empty($_GET['number']) && is_numeric($_GET['number']) ) ? (int)$_GET['number'] : '数'; ?>
 	<title>(<?php echo $number; ?>)の詳細</title>
 	<style>
 	.form-control{ display:inline; width:20%; }
@@ -28,44 +28,31 @@
 				<div class="alert alert-danger" role="alert">数値ではありません！<a href="index.php">もどる</a></div>
 			<?php }else{ ?>
 			<?php
-			$number1 = $number-1;
-			$number2 = $number+1;
-			$number3 = $number*2;
-			$number4 = $number/2;
-			
-			//素数判定
-			//素数フラグ
-			$is_sosu = false;
-			$is_not_sosu = false;
-			if($number == 2){
-				$is_sosu = true;
-			}elseif($number < 2){
-				$is_not_sosu = true;
-			}
-			if(!$is_sosu && !$is_not_sosu){
-				$niii = $number % 2;
-				if($niii == 0){
-					$is_not_sosu = true;
-				}
-			}
-			if(!$is_sosu && !$is_not_sosu && $number > 3){
-				$is_sosu = true;
-				for($n = 3; $n < $number; $n++){
-					if($number % $n == 0){
-						$is_not_sosu = true;
-						$is_sosu = false;
-						break;
+				$number1 = $number-1;
+				$number2 = $number+1;
+				$number3 = $number*2;
+				$number4 = $number/2;
+
+				//素数判定
+				//素数フラグ
+				$is_sosu = ($number == 2) ? true : false;
+				$is_not_sosu = ($number < 2) ? true : false;
+
+				if(!$is_sosu && !$is_not_sosu){
+					$is_not_sosu = ($number % 2 == 0);
+					$is_sosu = true;
+					for($n = 3; $n < $number; $n++){
+						if($number % $n == 0){
+							$is_not_sosu = true;
+							$is_sosu = false;
+							break;
+						}
 					}
 				}
-			}
-			if($is_sosu || $is_not_sosu){
+				
 				echo ($is_sosu) ? '素数です。' : '素数ではありません。';
-			}else{
-				echo '判定できませんでした。';
-			}
-			
-
-				$number6 = $number*$number*3.14;
+	
+				$number6 = $number * $number * 3.1415;
 				echo '<dl class="dl-horizontal">';
 				echo "<dt>入力した数値</dt><dd>".$number."</dd>";
 				echo "<dt>前の数</dt><dd>".$number1."</dd>";
